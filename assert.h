@@ -1,12 +1,8 @@
 #undef assert
 
 #ifdef NDEBUG
-#define assert(e) ((void)0)
+  #define assert(e) ((void)0)
 #else
-void _Assert(char *);
-
-#define _STR(x) _VAL(x)
-#define _VAL(x) #x
-#define assert(e)                                                              \
-  ((e) ? ((void)0) : _Assert(__FILE__ ":" _STR(__LINE__) " " #e))
+  void __assert(const char *func, const char *file, int line, const char *expr);
+  #define assert(e) ((e) ? ((void)0) : (__assert(__func__, __FILE__, __LINE__, #e)))
 #endif
