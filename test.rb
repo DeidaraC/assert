@@ -28,4 +28,13 @@ class TestExpand < Minitest::Test
     assert_equal 0, status.exitstatus
     assert_equal "", stderr_str
   end
+
+  def test_assert_multi_include
+    `cc #{CFLAGS} assert.c test/test_multi_include.c -o assert_multi_include.out`
+    stdout_str, stderr_str, status = Open3.capture3("./assert_multi_include.out")
+    assert_equal "", stdout_str
+    assert_equal false, status.exited?
+    assert_equal "Assertion failed: (1 == 2), in function: assert2, file: test/test_multi_include.c, line: 8.\n",
+    stderr_str
+  end
 end
