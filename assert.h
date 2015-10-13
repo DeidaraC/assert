@@ -1,4 +1,5 @@
 #undef assert
+#undef __assert
 
 #ifdef NDEBUG
 #define assert(e) ((void)0)
