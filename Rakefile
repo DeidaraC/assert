@@ -1,8 +1,9 @@
+require "rake/testtask"
+require "rake/clean"
+
+CLOBBER.include('**/*.out')
+
 task :default => :test
-
-CFLAGS  = "-std=c99 -Wall"
-
-SRC = FileList["**/*.c"]
 
 desc "format code"
 task :format do
@@ -14,4 +15,8 @@ task :format do
       file.puts(output)
     end
   end
+end
+
+Rake::TestTask.new do |t|
+  t.test_files = FileList["test.rb"]
 end
