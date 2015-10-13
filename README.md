@@ -4,4 +4,4 @@ The Standard C Library: `assert.h`
 
 ## TODO
 
-- [ ] add tests.
+- [ ] rewrite tests.
